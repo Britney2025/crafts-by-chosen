@@ -19,14 +19,14 @@ function Addproduct() {
     e.preventDefault();
     try {
       await addDoc(collection(db, "products"), product);
-      alert(":white_check_mark: Product added!");
+      alert("Product added!");
       setProduct({ name: "", price: "", description: "", imageUrl: "" });
     } catch (error) {
       console.error("Error adding product: ", error);
     }
   };
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+    <div className="min-h-screen flex items-center justify-center bg-[#f1e7dd]">
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-xl p-6 w-96 space-y-4"
@@ -69,7 +69,7 @@ function Addproduct() {
         />
         <button
           type="submit"
-          className="w-full bg-blue-500 text-white p-2 rounded hover:bg-blue-600"
+          className="w-full bg-[#a4826d] text-white p-2 rounded hover:bg-orange-800"
         >
           Add Product
         </button>
