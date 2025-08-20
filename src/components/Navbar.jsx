@@ -8,10 +8,10 @@ function Navbar() {
             <nav className="flex gap-6 text-lg font-semibold">
                 <Link to="/">Home</Link>
                 <Link to="/products">Products</Link>
-                <Link>Wishlist</Link>
-                <Link>Cart</Link>
-                <Link>My Account</Link>
-                <Link to="/add-products">Upload</Link>
+                <Link to="/wishlist">Wishlist</Link>
+                <Link to="/cart">Cart</Link>
+                <Link to="/my-account">My Account</Link>
+                <Link to="/add-products">Admin</Link>
             </nav>
         </header>
 
