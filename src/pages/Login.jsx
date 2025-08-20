@@ -13,13 +13,13 @@ function Login() {
         setError("");
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            navigate("/"); // :white_check_mark: redirect to homepage after login
+            navigate("/"); // redirect to homepage after login
         } catch (err) {
             setError("Invalid email or password");
         }
     };
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
+        <div className="flex justify-center items-center h-screen bg-[#f1e7dd]">
             <div className="bg-white p-8 rounded-xl shadow-md w-96">
                 <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
                 {error && <p className="text-red-500 text-sm mb-4">{error}</p>}
@@ -42,14 +42,14 @@ function Login() {
                     />
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+                        className="bg-[#a4826d] text-white py-2 rounded-lg hover:bg-orange-800"
                     >
                         Login
                     </button>
                 </form>
                 <p className="text-sm text-gray-600 mt-4 text-center">
                     Don’t have an account?{" "}
-                    <Link to="/signup" className="text-blue-500 hover:underline">
+                    <Link to="/signup" className="text-orange-500 hover:underline">
                         Sign up
                     </Link>
                 </p>

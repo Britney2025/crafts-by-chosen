@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
+import { useAuth } from "../hooks/useAuth";
 
 function Products() {
     const [products, setProducts] = useState([]);
+    const { user } = useAuth();
+    
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -19,6 +22,28 @@ function Products() {
         };
         fetchProducts();
     }, []);
+
+    const addToWishlist = async (product) => {
+        if (!user) {
+            alert("You must be logged in to add to wishlist!");
+            return;
+        }
+        try {
+            await setDoc(
+                doc(db, "wishlists", `${user.uid}_${product.id}`),
+                {
+                    userId: user.uid,
+                    productId: product.id,
+                    name: product.name,
+                    price: product.price,
+                    image: product.imageUrl,
+                }
+            );
+            alert("Added to wishlist!");
+        } catch (error) {
+            console.error("Error adding to wishlist:", error);
+        }
+    };
     return (
         <div className="min-h-screen bg-gray-50 py-10 px-6">
             <h1 className="text-3xl font-bold text-center text-gray-800 mb-10">
@@ -43,6 +68,16 @@ function Products() {
                                     {product.name}
                                 </h2>
                                 <p className="text-white font-semibold mt-2">Ksh{product.price}</p>
+                                <button
+                                    onClick={() => addToWishlist(product)}
+                                    className={`mt-2 py-2 px-4 rounded-lg text-white ${user
+                                            ? "bg-pink-500 hover:bg-pink-600"
+                                            : "bg-gray-400 cursor-not-allowed"
+                                        }`}
+                                    disabled={!user}
+                                >
+                                    Add to Wishlist
+                                </button>
                                 <button className="mt-4 w-full bg-[#f1e7dd] text-gray-800 font-semibold py-2 px-4 rounded-xl hover:bg-orange-400 transition duration-300">
                                     Add to Cart
                                 </button>
@@ -55,3 +90,9 @@ function Products() {
     );
 }
 export default Products;
+
+
+
+
+
+
