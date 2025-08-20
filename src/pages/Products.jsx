@@ -26,7 +26,7 @@ function Products() {
             {products.length === 0 ? (
                 <p className="text-center text-gray-500">No products yet...</p>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+                <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {products.map((product) => (
                         <div
                             key={product.id}
@@ -42,7 +42,7 @@ function Products() {
                                     {product.name}
                                 </h2>
                                 <p className="text-white font-semibold mt-2">Ksh{product.price}</p>
-                                <button className="mt-4 w-full bg-[#f1e7dd] text-gray-800 font-semibold py-2 px-4 rounded-xl hover:bg-orange-800 transition duration-300">
+                                <button className="mt-4 w-full bg-[#f1e7dd] text-gray-800 font-semibold py-2 px-4 rounded-xl hover:bg-orange-400 transition duration-300">
                                     Add to Cart
                                 </button>
                             </div>
