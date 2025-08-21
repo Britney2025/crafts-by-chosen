@@ -8,6 +8,7 @@ import Wishlist from './pages/Wishlist'
 import ProtectedRoute from './components/ProtectedRoute'
 import Login from './pages/Login'
 import SignUp from './pages/SignUp'
+import Cart from './pages/Cart'
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        {/* <Route path='cart' element={<Cart />} /> */}
+        <Route path='/cart' element={<Cart />} />
         <Route path='/login' element={<Login />} />
         <Route path='signup' element={<SignUp />} />
       </Routes>
