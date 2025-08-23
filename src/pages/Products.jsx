@@ -81,7 +81,7 @@ function Products() {
                             {/* Wishlist Icon */}
                             <button
                                 onClick={() => addToWishlist(product)}
-                                className={`absolute top-3 right-3 p-2 rounded-full ${user
+                                className={`absolute top-3 right-3 p-2 rounded-full ${ user
                                         ? "bg-white text-pink-500 hover:bg-pink-100"
                                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                                     }`}
