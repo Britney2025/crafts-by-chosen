@@ -30,14 +30,19 @@ function Checkout() {
     }, [user]);
     if (loading) return <p>Loading...</p>
     if (cartItems.length === 0) return <p className="text-xl text-center">Your cart is empty.</p>;
+
+    const total = cartItems.reduce((acc, item) => {
+        return acc + item.price * item.quantity;
+    }, 0);
+
     return (
         <div>
             <h2 className="text-xl font-bold mb-4">Checkout</h2>
             {cartItems.map((item) => (
                 <div key={item.id} className="border p-2 mb-2">
-                    <p>{item.name}</p>
-                    <p>Qty: {item.quantity}</p>
-                    <p>Ksh{item.price}</p>
+                    <p className="font-bold text-xl">{item.name}</p>
+                    <p> <span className="font-bold text-xl">Quantity: </span>{item.quantity}</p>
+                    <p> <span className="font-bold text-xl">Total: </span>Ksh{total.toFixed(2)}</p>
                 </div>
             ))}
             <button className="w-full bg-green-500 text-white p-2 mt-4 rounded-lg">
