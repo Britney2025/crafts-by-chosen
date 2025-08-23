@@ -10,8 +10,8 @@ function Navbar() {
                 <Link to="/products">Products</Link>
                 <Link to="/wishlist">Wishlist</Link>
                 <Link to="/cart">Cart</Link>
+                <Link to="/auth">Login/Signup</Link>
                 <Link to="/add-products">Admin</Link>
-                <Link to="/auth">Auth</Link>
             </nav>
         </header>
 
