@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../hooks/useAuth";
+import { FaHeart } from "react-icons/fa";
+import { FaShoppingCart } from "react-icons/fa"; 
 
 function Products() {
     const [products, setProducts] = useState([]);
     const { user } = useAuth();
-    
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -23,25 +24,44 @@ function Products() {
         fetchProducts();
     }, []);
 
+    // Add product to Wishlist
     const addToWishlist = async (product) => {
         if (!user) {
             alert("You must be logged in to add to wishlist!");
             return;
         }
         try {
-            await setDoc(
-                doc(db, "wishlists", `${user.uid}_${product.id}`),
-                {
-                    userId: user.uid,
-                    productId: product.id,
-                    name: product.name,
-                    price: product.price,
-                    image: product.imageUrl,
-                }
-            );
+            await setDoc(doc(db, "wishlists", `${user.uid}_${product.id}`), {
+                userId: user.uid,
+                productId: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.imageUrl,
+            });
             alert("Added to wishlist!");
         } catch (error) {
             console.error("Error adding to wishlist:", error);
+        }
+    };
+
+    // Add product to Cart
+    const addToCart = async (product) => {
+        if (!user) {
+            alert("You must be logged in to add to cart!");
+            return;
+        }
+        try {
+            await setDoc(doc(db, "carts", `${user.uid}_${product.id}`), {
+                userId: user.uid,
+                productId: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.imageUrl,
+                quantity: 1,
+            });
+            alert("Added to cart!");
+        } catch (error) {
+            console.error("Error adding to cart:", error);
         }
     };
     return (
@@ -56,31 +76,46 @@ function Products() {
                     {products.map((product) => (
                         <div
                             key={product.id}
-                            className="bg-[#c47b59] shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition duration-300"
+                            className="bg-[#C47B59] shadow-lg rounded-2xl overflow-hidden hover:shadow-xl transition duration-300 relative"
                         >
+                            {/* Wishlist Icon */}
+                            <button
+                                onClick={() => addToWishlist(product)}
+                                className={`absolute top-3 right-3 p-2 rounded-full ${user
+                                        ? "bg-white text-pink-500 hover:bg-pink-100"
+                                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                    }`}
+                                disabled={!user}
+                            >
+                                <FaHeart />
+                            </button>
+
+                            {/* Product Image */}
                             <img
                                 src={product.imageUrl}
                                 alt={product.name}
                                 className="h-56 w-full object-cover"
                             />
+                            {/* Product Details */}
                             <div className="p-4">
                                 <h2 className="text-lg font-semibold text-white">
                                     {product.name}
                                 </h2>
-                                <p className="text-white font-semibold mt-2">Ksh{product.price}</p>
-                                <button
-                                    onClick={() => addToWishlist(product)}
-                                    className={`mt-2 py-2 px-4 rounded-lg text-white ${user
-                                            ? "bg-pink-500 hover:bg-pink-600"
-                                            : "bg-gray-400 cursor-not-allowed"
-                                        }`}
-                                    disabled={!user}
-                                >
-                                    Add to Wishlist
-                                </button>
-                                <button className="mt-4 w-full bg-[#f1e7dd] text-gray-800 font-semibold py-2 px-4 rounded-xl hover:bg-orange-400 transition duration-300">
-                                    Add to Cart
-                                </button>
+
+                                {/* Price + Add to Cart */}
+                                <div className="flex justify-between items-center mt-3">
+                                    <p className="text-white font-bold">Ksh {product.price}</p>
+                                    <button
+                                        onClick={() => addToCart(product)}
+                                        className={`flex items-center gap-2 py-2 px-4 rounded-lg font-semibold transition ${user
+                                                ? "bg-[#F1E7DD] text-gray-800 hover:bg-orange-400"
+                                                : "bg-gray-400 text-gray-200 cursor-not-allowed"
+                                            }`}
+                                        disabled={!user}
+                                    >
+                                        <FaShoppingCart /> Add
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -90,9 +125,6 @@ function Products() {
     );
 }
 export default Products;
-
-
-
 
 
 

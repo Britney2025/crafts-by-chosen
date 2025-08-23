@@ -46,7 +46,7 @@ function Addproduct() {
           name="price"
           value={product.price}
           onChange={handleChange}
-          placeholder="Price"
+          placeholder="Price (Ksh)"
           className="w-full p-2 border rounded"
           required
         />
