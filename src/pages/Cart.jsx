@@ -26,7 +26,7 @@ export default function Cart() {
           id: doc.id,
           ...doc.data(),
           price: Number(doc.data().price),
-          quantity: doc.data().quantity || 1, // :white_check_mark: always default
+          quantity: doc.data().quantity || 1,
         }))
       )
     );
