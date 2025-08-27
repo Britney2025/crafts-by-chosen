@@ -56,7 +56,7 @@ export default function Cart() {
             {cartItems.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center border p-4 rounded-lg shadow-sm"
+                className="flex items-center border p-4 rounded-lg shadow-lg bg-[#c47b59]"
               >
                 {/* Image */}
                 <img
@@ -66,32 +66,32 @@ export default function Cart() {
                 />
                 {/* Details */}
                 <div className="ml-4 flex-1">
-                  <h2 className="text-lg font-semibold">{item.name}</h2>
-                  <p className="text-gray-600">KES {item.price}</p>
+                  <h2 className="text-lg text-white font-semibold">{item.name}</h2>
+                  <p className="text-white">KES {item.price}</p>
                   {/* Quantity & Remove */}
                   <div className="flex items-center gap-3 mt-3">
-                    <div className="flex items-center border rounded-lg">
+                    <div className="flex items-center border rounded-lg bg-[#f1e7dd]">
                       <button
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
-                        className="px-3 py-1 bg-gray-200 rounded-l-lg"
+                        className="px-3 py-1 bg-[#f1e7dd] font-bold rounded-l-lg hover:bg-orange-200"
                       >
                         -
                       </button>
-                      <span className="px-4">{item.quantity}</span>
+                      <span className="px-12">{item.quantity}</span>
                       <button
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
-                        className="px-3 py-1 bg-gray-200 rounded-r-lg"
+                        className="px-3 py-1 bg-[#f1e7dd] font-bold rounded-r-lg hover:bg-orange-200"
                       >
                         +
                       </button>
                     </div>
                     <button
                       onClick={() => removeFromCart(item.id)}
-                      className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                      className="bg-[#f1e7dd] text-gray-800 font-semibold px-4 py-2 rounded-lg hover:bg-orange-400"
                     >
                       Remove
                     </button>
@@ -104,7 +104,7 @@ export default function Cart() {
           <div className="flex justify-center mt-2">
             <button
               onClick={() => navigate("/checkout")}
-              className="w-full bg-green-600 text-white py-4 rounded-lg text-lg font-semibold hover:bg-green-700"
+              className="w-full bg-[#a4826d] text-white py-4 rounded-lg text-lg font-semibold hover:bg-orange-900"
             >
               Checkout (Total: Ksh {cartItems.reduce((sum, item) => sum + parseFloat(item.price) * item.quantity, 0)})
             </button>

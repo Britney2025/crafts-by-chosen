@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
 export default function AuthPage() {
     const [isLogin, setIsLogin] = useState(true);
     const [email, setEmail] = useState("");
@@ -21,7 +22,7 @@ export default function AuthPage() {
     };
     return (
         <div className="max-w-md mx-auto mt-10 p-6 border rounded-lg shadow-lg">
-            <h2 className="text-2xl font-bold mb-4">{isLogin ? "Login" : "Sign Up"}</h2>
+            <h2 className="text-2xl font-bold mb-4 text-orange-800">{isLogin ? "Login" : "Sign Up"}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
                 <input
                     type="email"
@@ -29,6 +30,7 @@ export default function AuthPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="w-full border px-3 py-2 rounded"
+                    required
                 />
                 <input
                     type="password"
@@ -36,10 +38,11 @@ export default function AuthPage() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className="w-full border px-3 py-2 rounded"
+                    required
                 />
                 <button
                     type="submit"
-                    className="w-full bg-blue-500 text-white py-2 rounded"
+                    className="w-full bg-[#a4826d] font-semibold text-white py-2 rounded hover:cursor-pointer hover:bg-orange-800"
                 >
                     {isLogin ? "Login" : "Sign Up"}
                 </button>
@@ -48,7 +51,7 @@ export default function AuthPage() {
                 {isLogin ? "Don't have an account?" : "Already have an account?"}{" "}
                 <button
                     onClick={() => setIsLogin(!isLogin)}
-                    className="text-blue-600 font-bold"
+                    className="text-orange-600 font-bold"
                 >
                     {isLogin ? "Sign Up" : "Login"}
                 </button>

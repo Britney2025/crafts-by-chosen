@@ -11,6 +11,7 @@ function Navbar() {
                 <Link to="/wishlist">Wishlist</Link>
                 <Link to="/cart">Cart</Link>
                 <Link to="/auth">Login/Signup</Link>
+                <Link to="/orders">My Account</Link>
                 <Link to="/add-products">Admin</Link>
             </nav>
         </header>

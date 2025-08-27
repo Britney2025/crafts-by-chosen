@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { db } from "../firebase";
 import { collection, query, where, onSnapshot, doc, deleteDoc, addDoc } from "firebase/firestore";
 import { useAuth } from "../hooks/useAuth";
+
 export default function Wishlist() {
     const { user } = useAuth();
     const [wishlist, setWishlist] = useState([]);
@@ -33,24 +34,23 @@ export default function Wishlist() {
             ) : (
                 <div className="space-y-6">
                     {wishlist.map(item => (
-                        <div key={item.id} className="flex items-center border p-4 rounded-lg shadow-sm">
-                            {/* Image on left */}
+                        <div key={item.id} className="flex items-center border p-4 rounded-lg shadow-lg bg-[#c47b59]">
                             <img src={item.image} alt={item.name} className="w-28 h-28 object-cover rounded-lg" />
-                            {/* Details on right */}
+                            {/* Details */}
                             <div className="ml-4 flex-1">
-                                <h2 className="text-lg font-semibold">{item.name}</h2>
-                                <p className="text-gray-600">KES {item.price}</p>
+                                <h2 className="text-lg text-white font-semibold">{item.name}</h2>
+                                <p className="text-white">KES {item.price}</p>
                                 {/* Buttons below */}
-                                <div className="flex items-center gap-3 mt-3">
+                                <div className="flex items-center gap-10 mt-3">
                                     <button
                                         onClick={() => removeFromWishlist(item.id)}
-                                        className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600"
+                                        className="bg-[#f1e7dd] text-gray-800 font-semibold px-6 py-2 rounded-lg hover:bg-orange-400"
                                     >
                                         Remove
                                     </button>
                                     <button
                                         onClick={() => moveToCart(item)}
-                                        className="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600"
+                                        className="bg-[#f1e7dd] text-gray-800 font-semibold px-6 py-2 rounded-lg hover:bg-orange-400"
                                     >
                                         Move to Cart
                                     </button>

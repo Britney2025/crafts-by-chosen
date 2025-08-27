@@ -82,7 +82,7 @@ function Products() {
                             <button
                                 onClick={() => addToWishlist(product)}
                                 className={`absolute top-3 right-3 p-2 rounded-full ${ user
-                                        ? "bg-white text-pink-500 hover:bg-pink-100"
+                                        ? "bg-white text-pink-600 hover:bg-pink-100"
                                         : "bg-gray-300 text-gray-500 cursor-not-allowed"
                                     }`}
                                 disabled={!user}
@@ -94,17 +94,18 @@ function Products() {
                             <img
                                 src={product.imageUrl}
                                 alt={product.name}
-                                className="h-56 w-full object-cover"
+                                className="h-100 w-full object-cover"
                             />
                             {/* Product Details */}
                             <div className="p-4">
                                 <h2 className="text-lg font-semibold text-white">
                                     {product.name}
                                 </h2>
+                                <p className="text-white font-semibold text-sm mt-4">{product.description}</p>
 
                                 {/* Price + Add to Cart */}
                                 <div className="flex justify-between items-center mt-3">
-                                    <p className="text-white font-bold">Ksh {product.price}</p>
+                                    <p className=" text-xl text-white font-bold">Ksh {product.price}</p>
                                     <button
                                         onClick={() => addToCart(product)}
                                         className={`flex items-center gap-2 py-2 px-4 rounded-lg font-semibold transition ${user
@@ -113,7 +114,7 @@ function Products() {
                                             }`}
                                         disabled={!user}
                                     >
-                                        <FaShoppingCart /> Add
+                                        <FaShoppingCart /> Add to Cart
                                     </button>
                                 </div>
                             </div>
