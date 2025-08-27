@@ -10,6 +10,7 @@ import Cart from './pages/Cart'
 import Checkout from './pages/Checkout'
 import AuthPage from './pages/AuthPage'
 import Orders from './pages/Orders'
+import ProductDetail from './pages/ProductDetail'
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/add-products' element={<AddProduct />} />
           <Route path='/products' element={<Products />} />
+          <Route path='/product/:id' element={<ProductDetail />} />
           <Route path='/wishlist'
             element={
               <ProtectedRoute>

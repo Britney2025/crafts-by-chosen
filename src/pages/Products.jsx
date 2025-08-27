@@ -3,7 +3,8 @@ import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 import { useAuth } from "../hooks/useAuth";
 import { FaHeart } from "react-icons/fa";
-import { FaShoppingCart } from "react-icons/fa"; 
+import { FaShoppingCart } from "react-icons/fa";
+import { Link } from "react-router";
 
 function Products() {
     const [products, setProducts] = useState([]);
@@ -81,9 +82,9 @@ function Products() {
                             {/* Wishlist Icon */}
                             <button
                                 onClick={() => addToWishlist(product)}
-                                className={`absolute top-3 right-3 p-2 rounded-full ${ user
-                                        ? "bg-white text-pink-600 hover:bg-pink-100"
-                                        : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                                className={`absolute top-3 right-3 p-2 rounded-full ${user
+                                    ? "bg-white text-pink-600 hover:bg-pink-100"
+                                    : "bg-gray-300 text-gray-500 cursor-not-allowed"
                                     }`}
                                 disabled={!user}
                             >
@@ -91,11 +92,14 @@ function Products() {
                             </button>
 
                             {/* Product Image */}
-                            <img
-                                src={product.imageUrl}
-                                alt={product.name}
-                                className="h-100 w-full object-cover"
-                            />
+                            <Link to={`/product/${product.id}`}>
+                                <img
+                                    src={product.imageUrl}
+                                    alt={product.name}
+                                    className="h-100 w-full object-cover"
+                                />
+                            </Link>
+
                             {/* Product Details */}
                             <div className="p-4">
                                 <h2 className="text-lg font-semibold text-white">
@@ -109,8 +113,8 @@ function Products() {
                                     <button
                                         onClick={() => addToCart(product)}
                                         className={`flex items-center gap-2 py-2 px-4 rounded-lg font-semibold transition ${user
-                                                ? "bg-[#F1E7DD] text-gray-800 hover:bg-orange-400"
-                                                : "bg-gray-400 text-gray-200 cursor-not-allowed"
+                                            ? "bg-[#F1E7DD] text-gray-800 hover:bg-orange-400"
+                                            : "bg-gray-400 text-gray-200 cursor-not-allowed"
                                             }`}
                                         disabled={!user}
                                     >
