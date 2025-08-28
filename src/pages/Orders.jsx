@@ -39,7 +39,7 @@ export default function OrdersPage() {
                                     </li>
                                 ))}
                             </ul>
-                            <p className="text-orange-900 font-bold text-xs mt-2">Date: {new Date(order.timestamp?.seconds * 1000).toLocaleString()}</p>
+                            <p className="text-orange-900 font-bold text-xs mt-2">Date: {new Date(order.timestamp ?.second * 1000).toLocaleString() }</p>
                         </div>
                     ))}
                 </div>

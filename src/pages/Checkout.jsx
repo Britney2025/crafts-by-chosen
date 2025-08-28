@@ -95,7 +95,7 @@ export default function Checkout() {
       {cartItems.length === 0 ? (
         <p className="text-center text-gray-600">Your cart is empty.</p>
       ) : (
-        <div className="bg-[#C47B59] shadow-md rounded-lg p-4">
+        <div className="bg-[#c47b59] shadow-md rounded-lg p-4">
           <ul className="divide-y divide-gray-300/40">
             {cartItems.map((item) => (
               <li
@@ -124,7 +124,7 @@ export default function Checkout() {
           <button
             onClick={handlePlaceOrder}
             disabled={placingOrder}
-            className="mt-6 w-full bg-[#F1E7DD] text-gray-800 py-3 rounded-xl font-semibold hover:bg-orange-400 disabled:opacity-50 transition"
+            className="mt-6 w-full bg-[#f1e7dd] text-gray-800 py-3 rounded-xl font-semibold hover:bg-orange-400 disabled:opacity-50 transition"
           >
             {placingOrder ? "Placing Order..." : "Place Order"}
           </button>

@@ -24,7 +24,6 @@ function Products() {
         };
         fetchProducts();
     }, []);
-
     // Add product to Wishlist
     const addToWishlist = async (product) => {
         if (!user) {
@@ -44,7 +43,6 @@ function Products() {
             console.error("Error adding to wishlist:", error);
         }
     };
-
     // Add product to Cart
     const addToCart = async (product) => {
         if (!user) {
@@ -90,7 +88,6 @@ function Products() {
                             >
                                 <FaHeart />
                             </button>
-
                             {/* Product Image */}
                             <Link to={`/product/${product.id}`}>
                                 <img
@@ -99,14 +96,12 @@ function Products() {
                                     className="h-100 w-full object-cover"
                                 />
                             </Link>
-
                             {/* Product Details */}
                             <div className="p-4">
                                 <h2 className="text-lg font-semibold text-white">
                                     {product.name}
                                 </h2>
                                 <p className="text-white font-semibold text-sm mt-4">{product.description}</p>
-
                                 {/* Price + Add to Cart */}
                                 <div className="flex justify-between items-center mt-3">
                                     <p className=" text-xl text-white font-bold">Ksh {product.price}</p>
@@ -130,6 +125,3 @@ function Products() {
     );
 }
 export default Products;
-
-
-
